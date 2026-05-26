@@ -1,0 +1,28 @@
+<body>
+    <script>
+        function SimpleJWT() {
+            fetch('http://localhost:5000/simplejwt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiR2ltYmxlIiwidXNlcm5hbWUiOiJncjExMTMiLCJwcml2IjoidGVzdGVyIn0.9G8c5WcNsmM09muU4lIi4Z31_vBGEgSMWqhsS8VRXT8"
+                    })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+    </script>
+
+    <button type="button" onclick="SimpleJWT()">
+        Simple JWT
+    </button>
+
+</body>
+
