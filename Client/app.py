@@ -31,3 +31,15 @@ def hello():
     #output = f"<p>base64 encoded token: <strong>{response['token']}</strong> <br> decoded token: <strong>{response['decoded']}</strong></p>"
     #return output
     return render_template("index.html", JWT="testseter")
+
+@app.route('/simplejwt', methods = ['POST'])
+def send_simple():
+    if request.method == 'POST':
+        response = requests.post("http://localhost:5000/simplejwt", data={
+            "token": jwt.encode({
+                "user": "Gimble",
+                "username": "gr1113",
+                "priv": "tester"
+            }, "password", algorithm="HS256")
+        }).json()
+        return response
