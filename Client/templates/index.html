@@ -1,28 +1,41 @@
 <body>
     <script>
-        function SimpleJWT() {
-            fetch('http://localhost:1115/simplejwt', {
+        async function SimpleJWT() {
+            fetch('http://127.0.0.1:5001/simplejwt', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
                 body: JSON.stringify({
-                    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiR2ltYmxlIiwidXNlcm5hbWUiOiJncjExMTMiLCJwcml2IjoidGVzdGVyIn0.9G8c5WcNsmM09muU4lIi4Z31_vBGEgSMWqhsS8VRXT8"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiR2ltYmxlIiwidXNlcm5hbWUiOiJncjExMTMiLCJwcml2IjoidGVzdGVyIn0.9G8c5WcNsmM09muU4lIi4Z31_vBGEgSMWqhsS8VRXT8"
                     })
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
         }
     </script>
 
-    <button type="button" onclick="SimpleJWT()">
+    <button type="button" onclick="fetchImage()">
         Simple JWT
     </button>
 
+    <p id="imagefetch"></p>
+    <script>
+        async function fetchImage(){
+            const thing = await fetch('http://127.0.0.1:5001/Obi'
+                , {
+                    method:"POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiR2ltYmxlIiwidXNlcm5hbWUiOiJncjExMTMiLCJwcml2IjoidGVzdGVyIn0.FhyqmfNkr_FSNCfZk9JthycFWJp5ANxiJmzd3EBDOs_2QdUS2fbuRvM-FSqUA5URJZd-sOoMxX1gp5IPliyPD-30fTAR6P8HXTOPyBmGQE5CjkzeB9hGfUF_x3sWkKlK5vJI1VD3_FgIHt2BFDbP93WWG8HUVXfNjtFiZh1IxKZi0eTtNg5MAwHHLdBwpX6zmyAIrqY7SlmE6_f6GrjyukhlCPRuzFXmtAbem9xdRHm-wH4Q0w-Nj-Bi8oriSgTGZBWvOXIJmTsDU859uPfkKwGhnTbbbMMYuCyqMFmeQDZ07_vYKS_p5WDgXNaSgPBqT_VSDucGjZbqMUNJ9U9N0w"
+                        }
+                    )
+                }
+            );
+            console.log(thing)
+            console.log(thing.json())
+        }
+
+        fetchImage();
+        //SimpleJWT();
+    </script>
 </body>
 
